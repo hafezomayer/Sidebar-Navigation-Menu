@@ -1,0 +1,35 @@
+selector{
+    --radius: 8px;
+    
+}
+selector .elementor-icon-list-icon{
+  color: currentColor;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: currentColor;
+  text-align: center;
+}
+selector .elementor-icon-list-item.active .elementor-icon-list-icon,
+selector .elementor-icon-list-item:hover .elementor-icon-list-icon{
+    -webkit-text-stroke-width: 1px;
+}
+selector .elementor-icon-list-item a{
+    padding: 13px 18px !important;
+    border-radius: var(--radius);
+}
+selector .elementor-icon-list-item.active a,
+selector .elementor-icon-list-item:hover a{
+    background: #fff;
+}
+selector .elementor-icon-list-item.active span,
+selector .elementor-icon-list-item:hover span,
+selector .elementor-icon-list-item.active span i,
+selector .elementor-icon-list-item:hover span i{
+    color: #000;
+}
+selector .elementor-icon-list-text{
+    min-width: var(--width);
+}
+selector a:focus{
+    outline: none;
+}

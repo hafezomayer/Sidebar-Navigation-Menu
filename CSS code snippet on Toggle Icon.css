@@ -1,0 +1,26 @@
+selector{
+    --gap: 0.25em;
+    --weight: 0.05em;
+    --width: 0.8em;
+}
+selector .elementor-icon{
+    position: relative;
+}
+selector i:before,
+selector i:after,
+selector .elementor-icon:after{
+    content: "";
+    height: var(--weight);
+    width: var(--width);
+    position: absolute;
+    background: currentColor;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,calc(-50% + var(--gap)));
+}
+selector i:after{
+    transform: translate(-50%,calc(-50% - var(--gap)));
+}
+selector .elementor-icon:after{
+    transform: translate(-50%,-50%);
+}

@@ -1,0 +1,96 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+var $ = jQuery,
+    clickLock = false
+
+$(document).ready(function(){
+
+$('.sidebar-toggle').on('click', function(){
+    
+    if( $(window).width() < 768 ){
+        $('body').toggleClass('left')
+    }else{
+        if( $('body').hasClass('open') ){
+            $('body').removeClass('open')
+            setTimeout(function(){
+            $('body').removeClass('opening')        
+            },300)  
+        }else{
+            $('body').addClass('opening')
+            setTimeout(function(){
+            $('body').addClass('open')        
+            },300)    
+        }
+    }
+})
+
+$('.navigation .elementor-icon-list-item').on('click', function(){
+    $('.navigation .elementor-icon-list-item').removeClass('active')
+    $(this).addClass('active')
+    clickLock = true
+    setTimeout(function(){
+        clickLock = false
+    },500)
+})
+
+})
+
+$(window).on('load resize', function(){
+    if( $(window).width() < 768 ){
+        $('body').removeClass('open opening')
+        $('body').addClass('left')
+    }else if( $(window).width() < 1025 ){
+        $('body').addClass('open opening')
+    }else{
+        $('body').removeClass('open opening')
+    }
+})
+
+var hash = true
+
+$(window).on('load', function(){
+    $('.elementor-icon-list-item a').each(function(){
+        if( $(this).attr('href') == location.protocol+'//'+location.host+location.pathname ){
+            hash = false
+            $(this).parent().addClass('active')
+        }
+    })
+})
+
+$(window).on('load scroll', function(){
+    
+    if( !hash || clickLock ) return
+    
+    var ids = [],
+        id
+    
+    $('.elementor-top-section').each(function(){
+        if($(window).scrollTop() + $(window).height() - 350 > $(this).offset().top){
+            ids.push($(this).attr('id'))
+        }
+    })
+    
+    ids = ids.filter(element => {
+      return element !== undefined
+    })
+    
+    id = ids[ids.length - 1]
+    
+    $('.elementor-icon-list-item').removeClass('active')
+    $('[href="#'+id+'"]').parent().addClass('active')
+})
+
+$('body').on('click', function(e){
+    
+if(!$(e.target).closest('.elementor-location-header').length && !$(e.target).hasClass('elementor-location-header') ){
+    
+    if( $(window).width() < 768 ){
+        $('body').addClass('left')
+    }else if( $(window).width() < 1025 ){
+        $('body').addClass('open opening')
+    }
+}
+    
+})
+</script>
